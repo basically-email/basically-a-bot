@@ -2,6 +2,9 @@ import { Client, Intents } from 'discord.js';
 import path from 'path';
 import HandleBot from './classes';
 
+
+// test comment
+
 const client = new Client({
 	intents: [
 		Intents.FLAGS.GUILDS,
