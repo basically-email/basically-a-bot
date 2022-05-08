@@ -23,5 +23,5 @@ new HandleBot({
 	defaultPrefix: '.', // the default prefix
 	handleTextCommands: true,
 	textCommandsDir: path.join(__dirname, 'commands/text'), // the directory of the text commands (make sure to include the whole path)
-	test: true
+	test: false
 });
