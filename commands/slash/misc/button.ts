@@ -6,7 +6,7 @@ export default {
 	category: 'MISC',
 	description: 'Jobless? Want to click a button? Here!',
 
-	callback: async ({ interaction, member }) => {
+	callback: async ({ interaction, member, client }) => {
 		const row = new MessageActionRow().addComponents([
 			new MessageButton()
 				.setLabel('Anger')

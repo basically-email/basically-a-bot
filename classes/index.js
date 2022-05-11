@@ -2,6 +2,7 @@ const { DMChannel, MessageEmbed, Collection } = require('discord.js');
 const AsciiTable = require('ascii-table');
 const path = require('path');
 const { readFileSync, writeFileSync, readdirSync } = require('fs');
+const { textChangeRangeIsUnchanged } = require('typescript');
 require('dotenv').config();
 
 class HandleBot {
@@ -432,17 +433,36 @@ class HandleBot {
         console.log();
     }
 
+    handleFeatures(directory, type) {
+        const files = this.filter(
+            readdirSync(directory, { withFileTypes: true }),
+            type,
+            directory
+        );
+
+        for (const file of files) {
+            const feature = require(file).default;
+
+            this.featureTable.addRow(feature.name, 'SUCCESS');
+            this.features.push(feature);
+        }
+
+        console.log(this.featureTable.toString());
+        console.log();
+    }
+
     constructor(options) {
         this.textCommandTable = new AsciiTable('Text Commands!');
         this.slashCommandTable = new AsciiTable('Slash Commands!');
         this.eventTable = new AsciiTable('Events!');
+        this.featureTable = new AsciiTable('Features!');
 
         if (options.test) {
-			this.server = process.env.TEST_SERVER;
-			this.token = process.env.TEST_TOKEN;
+            this.server = process.env.TEST_SERVER;
+            this.token = process.env.TEST_TOKEN;
         } else {
-			this.server = process.env.REAL_SERVER;
-			this.token = process.env.REAL_TOKEN;
+            this.server = process.env.REAL_SERVER;
+            this.token = process.env.REAL_TOKEN;
         }
 
         this.textCommandTable.setHeading('Text Command Name', 'Status');
@@ -452,9 +472,11 @@ class HandleBot {
             'Status'
         );
         this.textCommandTable.setHeading('Event Name', 'Status');
+        this.featureTable.setHeading('Feature Name', 'Status');
 
         this.slashCommands = new Collection();
         this.textCommands = new Collection();
+        this.features = [];
 
         this.client = options.client;
         this.database = options.jsonFilePathForRoleInfo;
@@ -486,6 +508,20 @@ class HandleBot {
                     this.server
                 );
                 this.handleSlashCommandInteractions();
+
+                if (options.handleFeatures) {
+                    this.handleFeatures(
+                        options.featuresDir,
+                        options.commandFileTypes
+                    );
+
+                    for (const feature of this.features) {
+                        feature.callback({
+                            client: this.client,
+                            instance: this
+                        });
+                    }
+                }
             });
         }
 
