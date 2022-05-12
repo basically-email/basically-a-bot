@@ -14,10 +14,6 @@ export default {
 
         try {
           let output = await eval(code);
-          if(typeof output !== 'string') {
-            output = inspect(output)
-          }
-
           message.channel.send(output, { code:'ts'})
         } catch (error) {
           message.channel.send('`eval() output is too long to display :/`')
