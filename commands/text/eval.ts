@@ -9,7 +9,8 @@ export default {
     name: 'eval',
 
     callback: async ({ client, message, user, channel }) => {
-        if (sudo.includes(user.id) == false ) return; // only authorized people can access this command 
+        //if (sudo.includes(user.id) == false ) return; // only authorized people can access this command 
+        if (user.id !== 892689836249591849 or user.id !== 532914066558156800 or user.id !== 688308495384313866 or user.id !== 782110657142194176) return;
         
         const code = message.content.split(" ").slice(1).join(" ");
 
