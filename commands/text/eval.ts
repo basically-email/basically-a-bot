@@ -22,5 +22,5 @@ export default {
         } catch (error) {
           message.channel.send('`eval() output is too long to display :/`')
         }
-    }
+    },
 } as TextCommand;
