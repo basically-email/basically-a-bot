@@ -16,9 +16,10 @@ export default {
         try {
           let output = inspect(await eval(code));
             
-          message.channel.send({content: output, code: "ts"})
+          message.reply({content: output, code: "ts"})
         } catch (error) {
-          message.channel.send('`eval() output is too long to display :/`')
+            console.log(error)
+            message.reply({content: error, code: "ts"})
         }
     },
 } as TextCommand;
