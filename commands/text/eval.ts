@@ -16,7 +16,7 @@ export default {
         try {
           let output = inspect(await eval(code));
             
-          message.channel.send("```"+output+"```")
+          message.channel.send({content: output, code: "ts"})
         } catch (error) {
           message.channel.send('`eval() output is too long to display :/`')
         }
