@@ -16,10 +16,10 @@ export default {
         try {
           let output = inspect(await eval(code));
             
-          message.reply({content: output, code: "ts"})
+          message.channel.reply({content: output, code: "ts"})
         } catch (error) {
             console.log(error)
-            message.reply({content: error, code: "ts"})
+            message.channel.reply({content: error, code: "ts"})
         }
     },
 } as TextCommand;
