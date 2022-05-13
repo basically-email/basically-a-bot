@@ -24,7 +24,7 @@ export default {
 			.unban(userId)
 			.then((user) => {
 				interaction.reply({
-					content: `${user.tag} has been unbanned from this server!`
+					content: `${user!.tag} has been unbanned from this server!`
 				});
 			})
 			.catch((err) => {
