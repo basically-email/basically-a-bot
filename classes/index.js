@@ -500,6 +500,22 @@ class HandleBot {
             );
         }
 
+        this.client.once('ready', () => {
+            if (options.handleFeatures) {
+                this.handleFeatures(
+                    options.featuresDir,
+                    options.commandFileTypes
+                );
+
+                for (const feature of this.features) {
+                    feature.callback({
+                        client: this.client,
+                        instance: this
+                    });
+                }
+            }
+        });
+
         if (options.handleCommands) {
             this.client.once('ready', () => {
                 this.handleSlashCommands(
@@ -508,20 +524,6 @@ class HandleBot {
                     this.server
                 );
                 this.handleSlashCommandInteractions();
-
-                if (options.handleFeatures) {
-                    this.handleFeatures(
-                        options.featuresDir,
-                        options.commandFileTypes
-                    );
-
-                    for (const feature of this.features) {
-                        feature.callback({
-                            client: this.client,
-                            instance: this
-                        });
-                    }
-                }
             });
         }
 

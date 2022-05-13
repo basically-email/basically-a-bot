@@ -70,6 +70,11 @@ export default {
                     embeds: [
                         new MessageEmbed()
                             .setTitle(title)
+                            .setAuthor({
+                                name: message.embeds[0].author!.name,
+                                iconURL: message.embeds[0].author!.iconURL,
+                            })
+                            .setColor('RANDOM')
                             .setDescription(
                                 `Click the button one more time!`
                             )

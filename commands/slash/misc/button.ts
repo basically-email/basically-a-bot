@@ -24,6 +24,7 @@ export default {
                 new MessageEmbed()
                     .setTitle('Click the buttons!')
                     .setColor('GREY')
+                    .setColor('#2e3137')
                     .setAuthor({
                         name: member.displayName,
                         iconURL: member.displayAvatarURL({ dynamic: true })
