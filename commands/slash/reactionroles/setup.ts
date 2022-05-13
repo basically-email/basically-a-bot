@@ -1,6 +1,6 @@
 import { TextBasedChannel } from 'discord.js';
 import fs from 'fs';
-import { RoleInfo, Command } from '../../../classes/';
+import { RoleInfo, Command } from '../../../classes';
 
 export default {
 	name: 'setup',
