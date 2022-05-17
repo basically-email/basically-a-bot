@@ -81,7 +81,7 @@ export default {
                     ],
                     components: message.components
                 });
-            } else if (customId.includes('ping-role-btn')) {
+            } else if (customId.includes('roles-ping-btn')) {
                 if (customId === 'roles-ping-btn-announcement') {
                     const role =
                         interaction.guild!.roles.cache.get(
