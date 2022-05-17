@@ -476,8 +476,8 @@ class HandleBot {
         this.slashCommands = new Collection();
         this.textCommands = new Collection();
         this.features = [];
-	    
-	this.snipe = new Collection();
+
+        this.snipe = new Collection();
 
         this.client = options.client;
         this.database = options.jsonFilePathForRoleInfo;
@@ -516,10 +516,10 @@ class HandleBot {
                 }
             }
         });
-	    
-	this.client.on('messageDelete' , message => {
-		snipe.set(message.channel.id , message)
-	})
+
+        this.client.on('messageDelete', (message) => {
+            this.snipe.set(message.channel.id, message);
+        });
 
         if (options.handleCommands) {
             this.client.once('ready', () => {

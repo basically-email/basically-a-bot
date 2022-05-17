@@ -29,7 +29,7 @@ export default {
 				permNum++
 			) {
 				const perm = command.permissions[permNum];
-				if (!message.member?.permissions.has(perm)) {
+				if (!message.member!.permissions.has(perm)) {
 					hasPerms = false;
 					break;
 				} else {

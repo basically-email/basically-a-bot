@@ -28,6 +28,8 @@ export default class HandleBot {
     server!: string;
     token!: string;
 
+    snipe: Collection<string, Message>;
+
     options: ConstructorOptions;
 
     private textCommandTable: Table;
