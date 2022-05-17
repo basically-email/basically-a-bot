@@ -60,7 +60,7 @@ export default {
 		);
 
 		await dm.send({
-			content: `Hey, welcome to the basically.email discord server!\nbasically.email offers you your daily dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details`,
+			content: `Hey, welcome to the basically.email discord server!\n[basically.email](https://basically.email) offers you your daily dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details`,
 			files: [
 				new MessageAttachment(
 					canvas.toBuffer(),
