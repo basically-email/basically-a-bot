@@ -518,7 +518,7 @@ class HandleBot {
         });
 
         this.client.on('messageDelete', (message) => {
-            this.snipe.set(message.channel.id, message);
+            this.snipe.set(message.id, message);
         });
 
         if (options.handleCommands) {
