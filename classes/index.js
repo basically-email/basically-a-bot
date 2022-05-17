@@ -2,6 +2,7 @@ const { DMChannel, MessageEmbed, Collection } = require('discord.js');
 const AsciiTable = require('ascii-table');
 const path = require('path');
 const { readFileSync, writeFileSync, readdirSync } = require('fs');
+const { collapseTextChangeRangesAcrossMultipleVersions } = require('typescript');
 require('dotenv').config();
 
 class HandleBot {

@@ -81,7 +81,11 @@ export default {
                     ],
                     components: message.components
                 });
-            } else if (customId.includes('ping-role-btn')) {
+            } else if (customId.includes('roles-ping-btn')) {
+                interaction.deferReply({
+                    ephemeral: true
+                });
+
                 if (customId === 'roles-ping-btn-announcement') {
                     const role =
                         interaction.guild!.roles.cache.get(
@@ -96,10 +100,18 @@ export default {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).remove(role);
+
+                        await interaction.editReply({
+                            content: `Removed ${role} from you.`
+                        });
                     } else {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).add(role);
+
+                        await interaction.editReply({
+                            content: `Added ${role} to you.`
+                        });
                     }
                 } else if (customId === 'roles-ping-btn-poll') {
                     const role =
@@ -115,10 +127,18 @@ export default {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).remove(role);
+
+                        await interaction.editReply({
+                            content: `Removed ${role} from you.`
+                        });
                     } else {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).add(role);
+
+                        await interaction.editReply({
+                            content: `Added ${role} to you.`
+                        });
                     }
                 } else if (customId === 'roles-ping-btn-launch') {
                     const role =
@@ -134,10 +154,18 @@ export default {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).remove(role);
+
+                        await interaction.editReply({
+                            content: `Removed ${role} from you.`
+                        });
                     } else {
                         await (
                             interaction.member!.roles as GuildMemberRoleManager
                         ).add(role);
+
+                        await interaction.editReply({
+                            content: `Added ${role} to you.`
+                        });
                     }
                 }
             }
@@ -147,8 +175,6 @@ export default {
             interaction.deferReply({
                 ephemeral: true
             });
-            
-            interaction.editReply({ content: "We will assign the role shortly. Feel free to grab a coffee!" });
 
             if (customId.includes('roles-')) {
                 const ageKeys = {
@@ -259,7 +285,8 @@ export default {
                     }
 
                     values.forEach((value) => {
-                        const key = pronounKeys[value as keyof typeof pronounKeys];
+                        const key =
+                            pronounKeys[value as keyof typeof pronounKeys];
                         const role = guild!.roles.cache.get(key)!;
 
                         (member!.roles as GuildMemberRoleManager)
@@ -294,7 +321,8 @@ export default {
                     }
 
                     values.forEach((value) => {
-                        const key = interestKeys[value as keyof typeof interestKeys];
+                        const key =
+                            interestKeys[value as keyof typeof interestKeys];
                         const role = guild!.roles.cache.get(key)!;
 
                         (member!.roles as GuildMemberRoleManager)
@@ -329,7 +357,8 @@ export default {
                     }
 
                     values.forEach((value) => {
-                        const key = locationKeys[value as keyof typeof locationKeys];
+                        const key =
+                            locationKeys[value as keyof typeof locationKeys];
                         const role = guild!.roles.cache.get(key)!;
 
                         (member!.roles as GuildMemberRoleManager)
