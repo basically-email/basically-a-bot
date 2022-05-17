@@ -12,14 +12,14 @@ export default {
     category: 'MISC',
 
     callback: async ({ message, channel, member }) => {
-        // if (
-        //     ![
-        //         '532914066558156800',
-        //         '688308495384313866',
-        //         '892689836249591849'
-        //     ].includes(member.id)
-        // )
-        //     return;
+        if (
+            ![
+                '532914066558156800',
+                '688308495384313866',
+                '892689836249591849'
+            ].includes(member.id)
+        )
+            return;
 
         await message.delete();
 
