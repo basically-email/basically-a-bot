@@ -147,6 +147,8 @@ export default {
             interaction.deferReply({
                 ephemeral: true
             });
+            
+            interaction.editReply({ content: "We will assign the role shortly. Feel free to grab a coffee!" });
 
             if (customId.includes('roles-')) {
                 const keys = {
