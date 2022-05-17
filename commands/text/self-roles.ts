@@ -24,7 +24,7 @@ export default {
         await message.delete();
 
         await channel.send({
-            content: '**Age Roles**',
+            content: '**Age**',
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
@@ -58,7 +58,7 @@ export default {
         });
 
         await channel.send({
-            content: '**Pronoun Roles**',
+            content: '**Pronoun**',
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
@@ -92,7 +92,7 @@ export default {
         });
 
         await channel.send({
-            content: '**Interest Roles**',
+            content: '**Interest**',
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
@@ -166,7 +166,7 @@ export default {
         });
 
         await channel.send({
-            content: '**Location Roles**',
+            content: '**Location**',
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
