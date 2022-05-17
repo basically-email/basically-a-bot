@@ -1,7 +1,6 @@
 import {
     MessageActionRow,
     MessageButton,
-    MessageEmbed,
     MessageSelectMenu
 } from 'discord.js';
 import { TextCommand } from '../../classes';
@@ -68,23 +67,23 @@ export default {
                         .addOptions(
                             {
                                 label: 'He / Him',
-                                value: 'he-him'
+                                value: 'roles-pronoun-he-him'
                             },
                             {
                                 label: 'She / Her',
-                                value: 'she-her'
+                                value: 'roles-pronoun-she-her'
                             },
                             {
                                 label: 'They / Them',
-                                value: 'they-them'
+                                value: 'roles-pronoun-they-them'
                             },
                             {
                                 label: 'Gender Fluid',
-                                value: 'gender-fluid'
+                                value: 'roles-pronoun-gender-fluid'
                             },
                             {
                                 label: 'Neo Pronoun',
-                                value: 'neo-pronoun'
+                                value: 'roles-pronoun-neo-pronoun'
                             }
                         )
                 )

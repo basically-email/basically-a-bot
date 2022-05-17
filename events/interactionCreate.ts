@@ -149,18 +149,22 @@ export default {
             });
 
             if (customId.includes('roles-')) {
-                const keys = {
+                const ageKeys = {
                     'roles-age-gz': '974643442686771211',
                     'roles-age-gx': '974927260710735882',
                     'roles-age-m': '974643544901963786',
-                    'roles-age-alpha': '974977402109321236',
+                    'roles-age-alpha': '974977402109321236'
+                };
 
-                    'he-him': '974644213746663444',
-                    'she-her': '974644258873167882',
-                    'they-them': '974644341253488690',
-                    'gender-fluid': '974644369963503686',
-                    'neo-pronoun': '974925502076821564',
+                const pronounKeys = {
+                    'roles-pronoun-he-him': '974644213746663444',
+                    'roles-pronoun-she-her': '974644258873167882',
+                    'roles-pronoun-they-them': '974644341253488690',
+                    'roles-pronoun-gender-fluid': '974644369963503686',
+                    'roles-pronoun-neo-pronoun': '974925502076821564'
+                };
 
+                const interestKeys = {
                     'roles-interests-web3': '974644755759792178',
                     'roles-interests-startups-or-VCs': '974647336422744074',
                     'roles-interests-ia': '974651666467012688',
@@ -172,15 +176,19 @@ export default {
                     'roles-interests-space': '974887270047961098',
                     'roles-interests-technology': '974888338609815622',
                     'roles-interests-science': '974888521934458963',
-                    'roles-interests-automobile': '974887397638697030',
+                    'roles-interests-automobile': '974887397638697030'
+                };
 
+                const locationKeys = {
                     'roles-location-asia': '974981229415919627',
                     'roles-location-oceania': '974981193940467722',
                     'roles-location-na': '974981350455136276',
                     'roles-location-sa': '974981362555695134',
                     'roles-location-eu': '974981263008071691',
-                    'roles-location-africa': '974981276467617822',
+                    'roles-location-africa': '974981276467617822'
+                };
 
+                const colorKeys = {
                     'roles-color-lime': '974649505817456670',
                     'roles-color-velvet': '974649573840650281',
                     'roles-color-blurple': '974649564055371816',
@@ -190,40 +198,182 @@ export default {
                     'roles-color-orange': '974909863354306641'
                 };
 
-                Object.keys(keys).forEach((key) => {
-                    (member!.roles as GuildMemberRoleManager).remove(
-                        keys[key as keyof typeof keys]
-                    );
-                });
+                if (customId === 'roles-age') {
+                    Object.keys(ageKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            ageKeys[key as keyof typeof ageKeys]
+                        );
+                    });
 
-                let roles: string;
-                let rolePings: Role[] = [];
+                    let roles: string;
+                    let rolePings: Role[] = [];
 
-                values.forEach((value) => {
-                    const role = guild!.roles.cache.get(
-                        keys[value as keyof typeof keys]
-                    )!;
-                    rolePings.push(role);
-                });
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            ageKeys[value as keyof typeof ageKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
 
-                if (values.length === 1) {
-                    roles = rolePings[0].toString();
-                } else {
-                    roles = rolePings.join(', ');
-                }
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
 
-                values.forEach((value) => {
-                    const key = keys[value as keyof typeof keys];
-                    const role = guild!.roles.cache.get(key)!;
+                    values.forEach((value) => {
+                        const key = ageKeys[value as keyof typeof ageKeys];
+                        const role = guild!.roles.cache.get(key)!;
 
-                    (member!.roles as GuildMemberRoleManager)
-                        .add(role)
-                        .then(async () => {
-                            await interaction.editReply({
-                                content: `Added ${roles}`
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
                             });
-                        });
-                });
+                    });
+                } else if (customId === 'roles-pronouns') {
+                    Object.keys(pronounKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            pronounKeys[key as keyof typeof pronounKeys]
+                        );
+                    });
+
+                    let roles: string;
+                    let rolePings: Role[] = [];
+
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            pronounKeys[value as keyof typeof pronounKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
+
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
+
+                    values.forEach((value) => {
+                        const key = pronounKeys[value as keyof typeof pronounKeys];
+                        const role = guild!.roles.cache.get(key)!;
+
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
+                            });
+                    });
+                } else if (customId === 'roles-interests') {
+                    Object.keys(interestKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            interestKeys[key as keyof typeof interestKeys]
+                        );
+                    });
+
+                    let roles: string;
+                    let rolePings: Role[] = [];
+
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            interestKeys[value as keyof typeof interestKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
+
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
+
+                    values.forEach((value) => {
+                        const key = interestKeys[value as keyof typeof interestKeys];
+                        const role = guild!.roles.cache.get(key)!;
+
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
+                            });
+                    });
+                } else if (customId === 'roles-location') {
+                    Object.keys(locationKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            locationKeys[key as keyof typeof locationKeys]
+                        );
+                    });
+
+                    let roles: string;
+                    let rolePings: Role[] = [];
+
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            locationKeys[value as keyof typeof locationKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
+
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
+
+                    values.forEach((value) => {
+                        const key = locationKeys[value as keyof typeof locationKeys];
+                        const role = guild!.roles.cache.get(key)!;
+
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
+                            });
+                    });
+                } else if (customId === 'roles-color') {
+                    Object.keys(colorKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            colorKeys[key as keyof typeof colorKeys]
+                        );
+                    });
+
+                    let roles: string;
+                    let rolePings: Role[] = [];
+
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            colorKeys[value as keyof typeof colorKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
+
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
+
+                    values.forEach((value) => {
+                        const key = colorKeys[value as keyof typeof colorKeys];
+                        const role = guild!.roles.cache.get(key)!;
+
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
+                            });
+                    });
+                }
             }
         }
     }
