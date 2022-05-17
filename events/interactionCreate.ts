@@ -305,7 +305,7 @@ export default {
                                 });
                             });
                     });
-                } else if (customId === 'roles-location') {
+                } else if (customId === 'roles-color') {
                     Object.keys(locationKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
                             locationKeys[key as keyof typeof locationKeys]
