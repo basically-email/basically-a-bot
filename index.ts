@@ -30,6 +30,6 @@ new HandleBot({
 	featuresDir: path.join(__dirname, 'features'),
 	textCommandsDir: path.join(__dirname, 'commands/text'), // the directory of the text commands (make sure to include the whole path)
 	
-	defaultPrefix: ':e_mail:', // the default prefix
+	defaultPrefix: '📧', // the default prefix
 	test: false
 });
