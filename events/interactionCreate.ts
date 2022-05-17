@@ -82,6 +82,7 @@ export default {
                     components: message.components
                 });
             } else if (customId.includes('roles-ping-btn')) {
+                
                 interaction.deferReply({
                     ephemeral: true
                 });
@@ -333,7 +334,7 @@ export default {
                                 });
                             });
                     });
-                } else if (customId === 'roles-location') {
+                } else if (customId === 'roles-color') {
                     Object.keys(locationKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
                             locationKeys[key as keyof typeof locationKeys]
