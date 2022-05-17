@@ -4,7 +4,8 @@ import {
     Message,
     MessageActionRow,
     MessageButton,
-    MessageEmbed
+    MessageEmbed,
+    Role
 } from 'discord.js';
 import { Event } from '../classes';
 import axios from 'axios';
@@ -143,6 +144,10 @@ export default {
         } else if (interaction.isSelectMenu()) {
             const { values, member, guild, customId } = interaction;
 
+            interaction.deferReply({
+                ephemeral: true
+            });
+
             if (customId.includes('roles-')) {
                 const keys = {
                     'roles-age-gz': '974643442686771211',
@@ -191,21 +196,33 @@ export default {
                     );
                 });
 
-                values.forEach(async (value) => {
-                    if (!Object.keys(keys).includes(value)) return;
+                let roles: string;
+                let rolePings: Role[] = [];
+
+                values.forEach((value) => {
+                    const role = guild!.roles.cache.get(
+                        keys[value as keyof typeof keys]
+                    )!;
+                    rolePings.push(role);
+                });
+
+                if (values.length === 1) {
+                    roles = rolePings[0].toString();
+                } else {
+                    roles = rolePings.join(', ');
+                }
+
+                values.forEach((value) => {
                     const key = keys[value as keyof typeof keys];
                     const role = guild!.roles.cache.get(key)!;
-                    if (
-                        (member!.roles as GuildMemberRoleManager).cache.has(key)
-                    ) {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            role
-                        );
-                    } else {
-                        await (member!.roles as GuildMemberRoleManager).add(
-                            role
-                        );
-                    }
+
+                    (member!.roles as GuildMemberRoleManager)
+                        .add(role)
+                        .then(async () => {
+                            await interaction.editReply({
+                                content: `Added ${roles}`
+                            });
+                        });
                 });
             }
         }
