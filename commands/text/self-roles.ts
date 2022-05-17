@@ -93,80 +93,6 @@ export default {
         });
 
         await channel.send({
-            content: '**Interest**',
-            components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
-                        .setMaxValues(12)
-                        .setCustomId('roles-interests')
-                        .setPlaceholder('Nothing chosen.')
-                        .addOptions(
-                            {
-                                label: 'Web 3',
-                                value: 'roles-interests-web3',
-                                emoji: '🌐'
-                            },
-                            {
-                                label: 'Startups / VCs',
-                                value: 'roles-interests-startups-or-VCs',
-                                emoji: '💫'
-                            },
-                            {
-                                label: 'International Affairs',
-                                value: 'roles-interests-ia',
-                                emoji: '🗞️'
-                            },
-                            {
-                                label: 'Programming',
-                                value: 'roles-interests-programming',
-                                emoji: '🖥️'
-                            },
-                            {
-                                label: 'Design',
-                                value: 'roles-interests-design',
-                                emoji: '🎨'
-                            },
-                            {
-                                label: 'Finance',
-                                value: 'roles-interests-finance',
-                                emoji: '💵'
-                            },
-                            {
-                                label: 'Esports',
-                                value: 'roles-interests-esports',
-                                emoji: '🎮'
-                            },
-                            {
-                                label: 'Humor',
-                                value: 'roles-interests-humor',
-                                emoji: '🪅'
-                            },
-                            {
-                                label: 'Space',
-                                value: 'roles-interests-space',
-                                emoji: '🪐'
-                            },
-                            {
-                                label: 'Technology',
-                                value: 'roles-interests-technology',
-                                emoji: '🔌'
-                            },
-                            {
-                                label: 'Science',
-                                value: 'roles-interests-science',
-                                emoji: '🧪'
-                            },
-                            {
-                                label: 'Automobile',
-                                value: 'roles-interests-automobile',
-                                emoji: '🏎️'
-                            }
-                        )
-                )
-            ]
-        });
-
-        await channel.send({
             content: '**Location**',
             components: [
                 new MessageActionRow().addComponents(
@@ -240,6 +166,81 @@ export default {
                             {
                                 label: 'Orange',
                                 value: 'roles-color-orange'
+                            }
+                        )
+                )
+            ]
+        });
+        
+
+        await channel.send({
+            content: '**Interest**',
+            components: [
+                new MessageActionRow().addComponents(
+                    new MessageSelectMenu()
+                        .setMaxValues(12)
+                        .setCustomId('roles-interests')
+                        .setPlaceholder('Nothing chosen.')
+                        .addOptions(
+                            {
+                                label: 'Web 3',
+                                value: 'roles-interests-web3',
+                                emoji: '🌐'
+                            },
+                            {
+                                label: 'Startups / VCs',
+                                value: 'roles-interests-startups-or-VCs',
+                                emoji: '💫'
+                            },
+                            {
+                                label: 'International Affairs',
+                                value: 'roles-interests-ia',
+                                emoji: '🗞️'
+                            },
+                            {
+                                label: 'Programming',
+                                value: 'roles-interests-programming',
+                                emoji: '🖥️'
+                            },
+                            {
+                                label: 'Design',
+                                value: 'roles-interests-design',
+                                emoji: '🎨'
+                            },
+                            {
+                                label: 'Finance',
+                                value: 'roles-interests-finance',
+                                emoji: '💵'
+                            },
+                            {
+                                label: 'Esports',
+                                value: 'roles-interests-esports',
+                                emoji: '🎮'
+                            },
+                            {
+                                label: 'Humor',
+                                value: 'roles-interests-humor',
+                                emoji: '🪅'
+                            },
+                            {
+                                label: 'Space',
+                                value: 'roles-interests-space',
+                                emoji: '🪐'
+                            },
+                            {
+                                label: 'Technology',
+                                value: 'roles-interests-technology',
+                                emoji: '🔌'
+                            },
+                            {
+                                label: 'Science',
+                                value: 'roles-interests-science',
+                                emoji: '🧪'
+                            },
+                            {
+                                label: 'Automobile',
+                                value: 'roles-interests-automobile',
+                                emoji: '🏎️'
                             }
                         )
                 )
