@@ -97,7 +97,7 @@ export default {
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
-                        .setMaxValues(12)
+                        .setMaxValues(6)
                         .setCustomId('roles-interests')
                         .setPlaceholder('Nothing chosen.')
                         .addOptions(
