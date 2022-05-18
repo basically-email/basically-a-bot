@@ -91,7 +91,7 @@ export default {
                 )
             ]
         });
-
+        
         await channel.send({
             content: '**Interest**',
             components: [
@@ -252,7 +252,7 @@ export default {
                 new MessageActionRow().addComponents(
                     new MessageButton()
                         .setStyle('PRIMARY')
-                        .setLabel('Announement Ping')
+                        .setLabel('Announcement Ping')
                         .setCustomId('roles-ping-btn-announcement'),
                     new MessageButton()
                         .setStyle('PRIMARY')
