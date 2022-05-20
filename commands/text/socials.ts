@@ -16,7 +16,7 @@ export default {
 
         await channel.send({
             content:
-                'https://media.discordapp.net/attachments/975999722974220358/976000719930929202/unknown.png',
+                'https://media.discordapp.net/attachments/975999722974220358/977142056327725056/unknown.png',
             components: [
                 new MessageActionRow().addComponents(
                     new MessageButton()
