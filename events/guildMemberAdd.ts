@@ -1,4 +1,4 @@
-import { MessageAttachment, GuildMember } from 'discord.js';
+import { MessageAttachment, GuildMember, MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 import { Event } from '../classes';
 import Canvas from 'canvas';
 import path from 'path';
@@ -58,15 +58,42 @@ export default {
 			canvas.width / 2,
 			canvas.height / 2 + 95
 		);
-
-		await dm.send({
-			content: `Hey, welcome to the basically.email discord server!\n[basically.email](https://basically.email) offers you your daily dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details`,
-			files: [
-				new MessageAttachment(
-					canvas.toBuffer(),
-					`welcome-${member.displayName}.png`
+		
+		const msgEmbed = new MessageEmbed()
+			.setColor('#34383e')
+			.setTitle('Welcome to Basically HQ')
+			.setURL('https://basically.email')
+			.setDescription('Hey, welcome to the basically.email discord server!\n[basically.email](https://basically.email) offers you your weekly dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details\n\nAlso grab some <@&981728618944274472> from <#931047440604332083>!')
+			.setImage(
+				  canvas.toBuffer(),
+				  `welcome-${member.displayName}.png`
 				)
-			]
+			.setTimestamp()
+			.setFooter({ text: 'Sent by Basically The Team with 💖', iconURL: '' });
+		
+		const socialbuttons = new MessageActionRow()
+		.addComponents(
+		new MessageButton()
+		    .setLabel('Website')
+		    .setURL('https://basically.email/')
+		    .setStyle('LINK')
+		new MessageButton()
+		    .setLabel('Twitter')
+		    .setURL('https://basically.email/twitter')
+		    .setStyle('LINK')
+		new MessageButton()
+		    .setLabel('Instagram')
+		    .setURL('https://basically.email/insta')
+		    .setStyle('LINK')
+		new MessageButton()
+		    .setLabel('Github')
+		    .setURL('https://basically.email/github')
+		    .setStyle('LINK')
+		);
+		
+		await dm.send({
+			embeds: [msgEmbed],
+			components: [socialbuttons]
 		});
 	}
 } as Event;
