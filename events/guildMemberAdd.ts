@@ -64,10 +64,7 @@ export default {
 			.setTitle('Welcome to Basically HQ')
 			.setURL('https://basically.email')
 			.setDescription('Hey, welcome to the basically.email discord server!\n[basically.email](https://basically.email) offers you your weekly dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details\n\nAlso grab some <@&981728618944274472> from <#931047440604332083>!')
-			.setImage(
-				  canvas.toBuffer(),
-				  `welcome-${member.displayName}.png`
-				)
+			.setImage('./welcome-${member.displayName}.png')
 			.setTimestamp()
 			.setFooter({ text: 'Sent by Basically The Team with 💖', iconURL: '' });
 		
@@ -91,9 +88,12 @@ export default {
 		    .setStyle('LINK')
 		);
 		
+		
 		await dm.send({
 			embeds: [msgEmbed],
 			components: [socialbuttons]
 		});
+		
+		canvas.toBuffer()
 	}
 } as Event;
