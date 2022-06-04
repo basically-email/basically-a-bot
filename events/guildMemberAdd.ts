@@ -6,7 +6,7 @@ import {
   MessageButton,
 } from "discord.js";
 import { Event } from "../classes";
-import Canvas from "canvas";
+
 import path from "path";
 
 export default {
