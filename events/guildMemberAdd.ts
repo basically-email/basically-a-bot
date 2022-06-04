@@ -27,7 +27,7 @@ export default {
       .setTitle("Welcome to Basically HQ")
       .setURL("https://basically.email")
       .setDescription(
-        "Hey there,\nwelcome to the basically.email discord server!\n\n<:emblem:982588268254216202> [basically.email](https://basically.email) offers you your weekly dose of humor and intellect needed for survival in this gen-z world.\n\n<:icons_shine1:859424400959602718>Check out <#931555127687528478> to get to know more about us. \nAlso make sure to use the `/register` command to sign up incase you haven't already!\n& dont forget to grab some roles from <#931047440604332083>!"
+        "Hey there,\nwelcome to the basically.email discord server!\n\n<:emblem:982588268254216202>** ** [basically.email](https://basically.email) offers you your weekly dose of humor and intellect needed for survival in this gen-z world.\n\nCheck out <#931555127687528478> to get to know more about us. \nAlso make sure to use the `/register` command to sign up incase you haven't already!\n& dont forget to grab some roles from <#931047440604332083>!"
       )
       .setImage(`https://basically-banner.up.railway.app/banner/${member.id}`)
       .setTimestamp()
