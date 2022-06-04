@@ -23,47 +23,6 @@ export default {
 
         const dm = await member.createDM();
 
-        const bg = await Canvas.loadImage(
-            path.join(__dirname, '../welcomeTemplate.png')
-        );
-
-        Canvas.registerFont('./Inter.ttf', { family: 'Inter-400' });
-
-        const canvas = Canvas.createCanvas(700, 250);
-        const ctx = canvas.getContext('2d');
-
-        const pfp = await Canvas.loadImage(
-            member.displayAvatarURL({
-                dynamic: true,
-                format: 'png',
-                size: 128
-            })
-        );
-
-        ctx.drawImage(bg, 0, 0, 700, 250);
-
-        ctx.fillStyle = '#383838';
-        ctx.fillRect(
-            canvas.width / 2 - pfp.width / 2 - 10,
-            canvas.height / 2 - pfp.height / 2 - 10 - 25,
-            148,
-            148
-        );
-
-        ctx.drawImage(
-            pfp,
-            canvas.width / 2 - pfp.width / 2,
-            canvas.height / 2 - pfp.height / 2 - 25
-        );
-
-        ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.font = '45px "Inter-400"';
-        ctx.textAlign = 'center';
-        ctx.fillText(
-            `Welcome ${member.displayName}!`,
-            canvas.width / 2,
-            canvas.height / 2 + 95
-        );
 
         const msgEmbed = new MessageEmbed()
             .setColor('#34383e')
@@ -72,6 +31,7 @@ export default {
             .setDescription(
                 'Hey, welcome to the basically.email discord server!\n[basically.email](https://basically.email) offers you your weekly dose of humor and intellect needed for survival in this gen-z world.\nPlease check out <#931555127687528478> for more details\n\nAlso grab some <@&981728618944274472> from <#931047440604332083>!'
             )
+            .setImage(‘https://basically-banner.up.railway.app/banner/${member.Id}’)
             .setTimestamp()
             .setFooter({
                 text: 'Sent by Basically The Team with 💖',
@@ -96,15 +56,6 @@ export default {
                 .setURL('https://basically.email/github')
                 .setStyle('LINK')
         );
-
-        await dm.send({
-            files: [
-                new MessageAttachment(
-                    canvas.toBuffer(),
-                    `welcome-${member.displayName}.png`
-                )
-            ]
-        });
 
         await dm.send({
             embeds: [msgEmbed],
