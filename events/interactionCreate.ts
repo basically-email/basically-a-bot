@@ -81,94 +81,6 @@ export default {
                     ],
                     components: message.components
                 });
-            } else if (customId.includes('roles-ping-btn')) {
-                
-                interaction.deferReply({
-                    ephemeral: true
-                });
-
-                if (customId === 'roles-ping-btn-announcement') {
-                    const role =
-                        interaction.guild!.roles.cache.get(
-                            '931047198836285462'
-                        )!;
-
-                    if (
-                        (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).cache.has('931047198836285462')
-                    ) {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).remove(role);
-
-                        await interaction.editReply({
-                            content: `Removed ${role} from you.`
-                        });
-                    } else {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).add(role);
-
-                        await interaction.editReply({
-                            content: `Added ${role} to you.`
-                        });
-                    }
-                } else if (customId === 'roles-ping-btn-poll') {
-                    const role =
-                        interaction.guild!.roles.cache.get(
-                            '931047245850222592'
-                        )!;
-
-                    if (
-                        (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).cache.has('931047245850222592')
-                    ) {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).remove(role);
-
-                        await interaction.editReply({
-                            content: `Removed ${role} from you.`
-                        });
-                    } else {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).add(role);
-
-                        await interaction.editReply({
-                            content: `Added ${role} to you.`
-                        });
-                    }
-                } else if (customId === 'roles-ping-btn-launch') {
-                    const role =
-                        interaction.guild!.roles.cache.get(
-                            '973830935214714940'
-                        )!;
-
-                    if (
-                        (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).cache.has('973830935214714940')
-                    ) {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).remove(role);
-
-                        await interaction.editReply({
-                            content: `Removed ${role} from you.`
-                        });
-                    } else {
-                        await (
-                            interaction.member!.roles as GuildMemberRoleManager
-                        ).add(role);
-
-                        await interaction.editReply({
-                            content: `Added ${role} to you.`
-                        });
-                    }
-                }
             }
         } else if (interaction.isSelectMenu()) {
             const { values, member, guild, customId } = interaction;
@@ -183,6 +95,12 @@ export default {
                     'roles-age-gx': '974927260710735882',
                     'roles-age-m': '974643544901963786',
                     'roles-age-alpha': '974977402109321236'
+                };
+
+                const pingKeys = {
+                    'roles-ping-announcement': '931047198836285462',
+                    'roles-ping-poll': '931047245850222592',
+                    'roles-ping-launch': '973830935214714940'
                 };
 
                 const pronounKeys = {
@@ -371,6 +289,41 @@ export default {
                             });
                     });
                 } else if (customId === 'roles-color') {
+                    Object.keys(colorKeys).forEach((key) => {
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            colorKeys[key as keyof typeof colorKeys]
+                        );
+                    });
+
+                    let roles: string;
+                    let rolePings: Role[] = [];
+
+                    values.forEach((value) => {
+                        const role = guild!.roles.cache.get(
+                            colorKeys[value as keyof typeof colorKeys]
+                        )!;
+                        rolePings.push(role);
+                    });
+
+                    if (values.length === 1) {
+                        roles = rolePings[0].toString();
+                    } else {
+                        roles = rolePings.join(', ');
+                    }
+
+                    values.forEach((value) => {
+                        const key = colorKeys[value as keyof typeof colorKeys];
+                        const role = guild!.roles.cache.get(key)!;
+
+                        (member!.roles as GuildMemberRoleManager)
+                            .add(role)
+                            .then(async () => {
+                                await interaction.editReply({
+                                    content: `Added ${roles}`
+                                });
+                            });
+                    });
+                } else if (customId === 'roles-ping') {
                     Object.keys(colorKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
                             colorKeys[key as keyof typeof colorKeys]

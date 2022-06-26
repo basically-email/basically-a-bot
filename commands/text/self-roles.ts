@@ -245,23 +245,30 @@ export default {
                 )
             ]
         });
-
+        
         await channel.send({
             content: '**Ping Roles**',
             components: [
                 new MessageActionRow().addComponents(
-                    new MessageButton()
-                        .setStyle('PRIMARY')
-                        .setLabel('Announcement Ping')
-                        .setCustomId('roles-ping-btn-announcement'),
-                    new MessageButton()
-                        .setStyle('PRIMARY')
-                        .setLabel('Poll Ping')
-                        .setCustomId('roles-ping-btn-poll'),
-                    new MessageButton()
-                        .setStyle('PRIMARY')
-                        .setLabel('Launch Ping')
-                        .setCustomId('roles-ping-btn-launch')
+                    new MessageSelectMenu()
+                        .setMaxValues(1)
+                        .setCustomId('roles-ping')
+                        .setPlaceholder('Nothing chosen.')
+                        .addOptions(
+                            {
+                                label: 'Announcement Ping',
+                                emoji: '📢',
+                                value: 'roles-ping-announcement'
+                            },
+                            {
+                                label: 'Poll Ping',
+                                value: 'roles-ping-poll'
+                            },
+                            {
+                                label: 'Launch Ping',
+                                value: 'roles-ping-launch'
+                            }
+                        )
                 )
             ]
         });
