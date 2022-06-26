@@ -22,7 +22,7 @@ export default {
 
         await message.delete();
 
-        await channel.send('https://images-ext-2.discordapp.net/external/ip_d-gdTQYl67w1waB9G28bRmdk6YDP3t0V7L_vJpG4/https/media.discordapp.net/attachments/975999722974220358/976000324085100604/unknown.png?width=2400&height=1137');
+        await channel.send('https://media.discordapp.net/attachments/978964101193683014/982201479781822464/unknown.png');
 
         await channel.send({
             content: '**Age**',
