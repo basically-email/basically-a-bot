@@ -257,7 +257,6 @@ export default {
                         .addOptions(
                             {
                                 label: 'Announcement Ping',
-                                emoji: '📢',
                                 value: 'roles-ping-announcement'
                             },
                             {

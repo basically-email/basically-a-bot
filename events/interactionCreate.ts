@@ -324,9 +324,9 @@ export default {
                             });
                     });
                 } else if (customId === 'roles-ping') {
-                    Object.keys(colorKeys).forEach((key) => {
+                    Object.keys(pingKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
-                            colorKeys[key as keyof typeof colorKeys]
+                            pingKeys[key as keyof typeof pingKeys]
                         );
                     });
 
@@ -335,7 +335,7 @@ export default {
 
                     values.forEach((value) => {
                         const role = guild!.roles.cache.get(
-                            colorKeys[value as keyof typeof colorKeys]
+                            pingKeys[value as keyof typeof pingKeys]
                         )!;
                         rolePings.push(role);
                     });
@@ -347,7 +347,7 @@ export default {
                     }
 
                     values.forEach((value) => {
-                        const key = colorKeys[value as keyof typeof colorKeys];
+                        const key = pingKeys[value as keyof typeof pingKeys];
                         const role = guild!.roles.cache.get(key)!;
 
                         (member!.roles as GuildMemberRoleManager)
