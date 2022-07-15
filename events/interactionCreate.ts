@@ -168,17 +168,9 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key = ageKeys[value as keyof typeof ageKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
                 } else if (customId === 'roles-pronouns') {
                     Object.keys(pronounKeys).forEach((key) => {
@@ -203,19 +195,11 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key =
-                            pronounKeys[value as keyof typeof pronounKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
+
                 } else if (customId === 'roles-interests') {
                     Object.keys(interestKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
@@ -239,19 +223,11 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key =
-                            interestKeys[value as keyof typeof interestKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
+
                 } else if (customId === 'roles-location') {
                     Object.keys(locationKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
@@ -275,19 +251,11 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key =
-                            locationKeys[value as keyof typeof locationKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
+
                 } else if (customId === 'roles-color') {
                     Object.keys(colorKeys).forEach((key) => {
                         (member!.roles as GuildMemberRoleManager).remove(
@@ -311,17 +279,9 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key = colorKeys[value as keyof typeof colorKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
                 } else if (customId === 'roles-ping') {
                     Object.keys(pingKeys).forEach((key) => {
@@ -346,17 +306,9 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    values.forEach((value) => {
-                        const key = pingKeys[value as keyof typeof pingKeys];
-                        const role = guild!.roles.cache.get(key)!;
-
-                        (member!.roles as GuildMemberRoleManager)
-                            .add(role)
-                            .then(async () => {
-                                await interaction.editReply({
-                                    content: `Added ${roles}`
-                                });
-                            });
+                    (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await interaction.editReply({
+                        content: `Added ${roles}`
                     });
                 }
             }
