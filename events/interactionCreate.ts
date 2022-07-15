@@ -146,8 +146,8 @@ export default {
                 };
 
                 if (customId === 'roles-age') {
-                    Object.keys(ageKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(ageKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             ageKeys[key as keyof typeof ageKeys]
                         );
                     });
@@ -173,8 +173,8 @@ export default {
                         content: `Added ${roles}`
                     });
                 } else if (customId === 'roles-pronouns') {
-                    Object.keys(pronounKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(pronounKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             pronounKeys[key as keyof typeof pronounKeys]
                         );
                     });
@@ -201,8 +201,8 @@ export default {
                     });
 
                 } else if (customId === 'roles-interests') {
-                    Object.keys(interestKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(interestKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             interestKeys[key as keyof typeof interestKeys]
                         );
                     });
@@ -229,8 +229,8 @@ export default {
                     });
 
                 } else if (customId === 'roles-location') {
-                    Object.keys(locationKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(locationKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             locationKeys[key as keyof typeof locationKeys]
                         );
                     });
@@ -257,8 +257,8 @@ export default {
                     });
 
                 } else if (customId === 'roles-color') {
-                    Object.keys(colorKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(colorKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             colorKeys[key as keyof typeof colorKeys]
                         );
                     });
@@ -284,8 +284,8 @@ export default {
                         content: `Added ${roles}`
                     });
                 } else if (customId === 'roles-ping') {
-                    Object.keys(pingKeys).forEach((key) => {
-                        (member!.roles as GuildMemberRoleManager).remove(
+                    Object.keys(pingKeys).forEach(async (key) => {
+                        await (member!.roles as GuildMemberRoleManager).remove(
                             pingKeys[key as keyof typeof pingKeys]
                         );
                     });
@@ -306,7 +306,7 @@ export default {
                         roles = rolePings.join(', ');
                     }
 
-                    (member!.roles as GuildMemberRoleManager).add(rolePings);
+                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
                         content: `Added ${roles}`
                     });
