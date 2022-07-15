@@ -85,7 +85,7 @@ export default {
         } else if (interaction.isSelectMenu()) {
             const { values, member, guild, customId } = interaction;
 
-            interaction.deferReply({
+            await interaction.deferReply({
                 ephemeral: true
             });
 
@@ -162,6 +162,20 @@ export default {
                         rolePings.push(role);
                     });
 
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
+
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
                     } else {
@@ -188,6 +202,20 @@ export default {
                         )!;
                         rolePings.push(role);
                     });
+
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
 
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
@@ -217,6 +245,20 @@ export default {
                         rolePings.push(role);
                     });
 
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
+
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
                     } else {
@@ -245,11 +287,27 @@ export default {
                         rolePings.push(role);
                     });
 
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
+
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
                     } else {
                         roles = rolePings.join(', ');
                     }
+
+                    console.log(rolePings);
 
                     await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
@@ -272,6 +330,20 @@ export default {
                         )!;
                         rolePings.push(role);
                     });
+
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
 
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
@@ -299,6 +371,20 @@ export default {
                         )!;
                         rolePings.push(role);
                     });
+
+                    let throwError = false;
+
+                    for (const role of rolePings) {
+                        if (!role) throwError = true;
+                    }
+
+                    if (throwError) {
+                        await interaction.editReply({
+                            content: `An error was thrown. The roles will be added to you shortly.`
+                        });
+
+                        return;
+                    };
 
                     if (values.length === 1) {
                         roles = rolePings[0].toString();
