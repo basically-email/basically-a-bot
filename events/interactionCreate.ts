@@ -5,6 +5,7 @@ import {
     MessageActionRow,
     MessageButton,
     MessageEmbed,
+    MessageSelectMenu,
     Role
 } from 'discord.js';
 import { Event } from '../classes';
@@ -146,255 +147,94 @@ export default {
                 };
 
                 if (customId === 'roles-age') {
-                    Object.keys(ageKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            ageKeys[key as keyof typeof ageKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(ageKeys[option.value as keyof typeof ageKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            ageKeys[value as keyof typeof ageKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(ageKeys[option.value as keyof typeof ageKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(ageKeys[value as keyof typeof ageKeys]);
                     }
 
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
                 } else if (customId === 'roles-pronouns') {
-                    Object.keys(pronounKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            pronounKeys[key as keyof typeof pronounKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(pronounKeys[option.value as keyof typeof pronounKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            pronounKeys[value as keyof typeof pronounKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(pronounKeys[option.value as keyof typeof pronounKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(pronounKeys[value as keyof typeof pronounKeys]);
                     }
 
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
-
                 } else if (customId === 'roles-interests') {
-                    Object.keys(interestKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            interestKeys[key as keyof typeof interestKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(interestKeys[option.value as keyof typeof interestKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            interestKeys[value as keyof typeof interestKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(interestKeys[option.value as keyof typeof interestKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(interestKeys[value as keyof typeof interestKeys]);
                     }
 
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
-
                 } else if (customId === 'roles-location') {
-                    Object.keys(locationKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            locationKeys[key as keyof typeof locationKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(locationKeys[option.value as keyof typeof locationKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            locationKeys[value as keyof typeof locationKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(locationKeys[option.value as keyof typeof locationKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(locationKeys[value as keyof typeof locationKeys]);
                     }
 
-                    console.log(rolePings);
-
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
-
                 } else if (customId === 'roles-color') {
-                    Object.keys(colorKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            colorKeys[key as keyof typeof colorKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(colorKeys[option.value as keyof typeof colorKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            colorKeys[value as keyof typeof colorKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(colorKeys[option.value as keyof typeof colorKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(colorKeys[value as keyof typeof colorKeys]);
                     }
 
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
                 } else if (customId === 'roles-ping') {
-                    Object.keys(pingKeys).forEach(async (key) => {
-                        await (member!.roles as GuildMemberRoleManager).remove(
-                            pingKeys[key as keyof typeof pingKeys]
-                        );
-                    });
+                    const component = interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter((option) => !values.includes(pingKeys[option.value as keyof typeof pingKeys]));
 
-                    let roles: string;
-                    let rolePings: Role[] = [];
-
-                    values.forEach((value) => {
-                        const role = guild!.roles.cache.get(
-                            pingKeys[value as keyof typeof pingKeys]
-                        )!;
-                        rolePings.push(role);
-                    });
-
-                    let throwError = false;
-
-                    for (const role of rolePings) {
-                        if (!role) throwError = true;
+                    for (const option of removed) {
+                        (member!.roles as GuildMemberRoleManager).remove(pingKeys[option.value as keyof typeof pingKeys]);
                     }
 
-                    if (throwError) {
-                        await interaction.editReply({
-                            content: `An error was thrown. The roles will be added to you shortly.`
-                        });
-
-                        return;
-                    };
-
-                    if (values.length === 1) {
-                        roles = rolePings[0].toString();
-                    } else {
-                        roles = rolePings.join(', ');
+                    for (const value of values) {
+                        await (member!.roles as GuildMemberRoleManager).add(pingKeys[value as keyof typeof pingKeys]);
                     }
 
-                    await (member!.roles as GuildMemberRoleManager).add(rolePings);
                     await interaction.editReply({
-                        content: `Added ${roles}`
+                        content: `Updated roles!`
                     });
                 }
             }

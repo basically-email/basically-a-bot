@@ -97,7 +97,7 @@ export default {
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
-                        .setMaxValues(6)
+                        .setMaxValues(12)
                         .setCustomId('roles-interests')
                         .setPlaceholder('Nothing chosen.')
                         .addOptions(
@@ -235,7 +235,7 @@ export default {
                             },
                             {
                                 label: 'Cyan',
-                                value: 'roles-color-cyan'
+                                value: 'roles-color-cyan',
                             },
                             {
                                 label: 'Orange',
@@ -251,21 +251,24 @@ export default {
             components: [
                 new MessageActionRow().addComponents(
                     new MessageSelectMenu()
-                        .setMaxValues(1)
+                        .setMaxValues(3)
                         .setCustomId('roles-ping')
                         .setPlaceholder('Nothing chosen.')
                         .addOptions(
                             {
                                 label: 'Announcement Ping',
-                                value: 'roles-ping-announcement'
+                                value: 'roles-ping-announcement',
+                                emoji: '📢'
                             },
                             {
                                 label: 'Poll Ping',
-                                value: 'roles-ping-poll'
+                                value: 'roles-ping-poll',
+                                emoji: '🔮'
                             },
                             {
                                 label: 'Launch Ping',
-                                value: 'roles-ping-launch'
+                                value: 'roles-ping-launch',
+                                emoji: '🆕'
                             }
                         )
                 )
