@@ -147,94 +147,196 @@ export default {
                 };
 
                 if (customId === 'roles-age') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(ageKeys[option.value as keyof typeof ageKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                ageKeys[option.value as keyof typeof ageKeys]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(ageKeys[option.value as keyof typeof ageKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            ageKeys[option.value as keyof typeof ageKeys]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(ageKeys[value as keyof typeof ageKeys]);
+                        const role = await guild!.roles.fetch(ageKeys[value as keyof typeof ageKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
                     });
                 } else if (customId === 'roles-pronouns') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(pronounKeys[option.value as keyof typeof pronounKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                pronounKeys[
+                                    option.value as keyof typeof pronounKeys
+                                ]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(pronounKeys[option.value as keyof typeof pronounKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            pronounKeys[
+                                option.value as keyof typeof pronounKeys
+                            ]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(pronounKeys[value as keyof typeof pronounKeys]);
+                        const role = await guild!.roles.fetch(pronounKeys[value as keyof typeof pronounKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
                     });
                 } else if (customId === 'roles-interests') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(interestKeys[option.value as keyof typeof interestKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                interestKeys[
+                                    option.value as keyof typeof interestKeys
+                                ]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(interestKeys[option.value as keyof typeof interestKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            interestKeys[
+                                option.value as keyof typeof interestKeys
+                            ]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(interestKeys[value as keyof typeof interestKeys]);
+                        const role = await guild!.roles.fetch(interestKeys[value as keyof typeof interestKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
                     });
                 } else if (customId === 'roles-location') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(locationKeys[option.value as keyof typeof locationKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                locationKeys[
+                                    option.value as keyof typeof locationKeys
+                                ]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(locationKeys[option.value as keyof typeof locationKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            locationKeys[
+                                option.value as keyof typeof locationKeys
+                            ]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(locationKeys[value as keyof typeof locationKeys]);
+                        const role = await guild!.roles.fetch(locationKeys[value as keyof typeof locationKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
                     });
                 } else if (customId === 'roles-color') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(colorKeys[option.value as keyof typeof colorKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                colorKeys[
+                                    option.value as keyof typeof colorKeys
+                                ]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(colorKeys[option.value as keyof typeof colorKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            colorKeys[option.value as keyof typeof colorKeys]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(colorKeys[value as keyof typeof colorKeys]);
+                        const role = await guild!.roles.fetch(colorKeys[value as keyof typeof colorKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
                     });
                 } else if (customId === 'roles-ping') {
-                    const component = interaction.component as MessageSelectMenu;
-                    const removed = component.options.filter((option) => !values.includes(pingKeys[option.value as keyof typeof pingKeys]));
+                    const component =
+                        interaction.component as MessageSelectMenu;
+                    const removed = component.options.filter(
+                        (option) =>
+                            !values.includes(
+                                pingKeys[option.value as keyof typeof pingKeys]
+                            )
+                    );
 
                     for (const option of removed) {
-                        (member!.roles as GuildMemberRoleManager).remove(pingKeys[option.value as keyof typeof pingKeys]);
+                        (member!.roles as GuildMemberRoleManager).remove(
+                            pingKeys[option.value as keyof typeof pingKeys]
+                        );
                     }
 
                     for (const value of values) {
-                        await (member!.roles as GuildMemberRoleManager).add(pingKeys[value as keyof typeof pingKeys]);
+                        const role = await guild!.roles.fetch(pingKeys[value as keyof typeof pingKeys], {
+                            force: true
+                        })!;
+
+                        await (member!.roles as GuildMemberRoleManager).add(
+                            role as Role
+                        );
                     }
 
                     await interaction.editReply({
                         content: `Updated roles!`
+                    });
+                } else {
+                    await interaction.editReply({
+                        content: 'Roles will be added to you shortly.'
                     });
                 }
             }
