@@ -25,7 +25,5 @@ new HandleBot({
     commandsDir: path.join(__dirname, 'commands'), // the directory of the commands (make sure to include the whole path)
     eventsDir: path.join(__dirname, 'events'), // event file directory (make sure to include the whole path)
     featuresDir: path.join(__dirname, 'features'), // the directory of the features (full path)
-
-    defaultPrefix: '.', // the default prefix
     test: false
 });
