@@ -2,11 +2,11 @@ import {
     GuildMemberRoleManager,
     Interaction,
     Message,
-    MessageActionRow,
-    MessageButton,
-    MessageEmbed,
-    MessageSelectMenu,
-    Role
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder,
+    ButtonStyle,
+    StringSelectMenuComponent
 } from 'discord.js';
 import { Event } from '../classes';
 import axios from 'axios';
@@ -27,7 +27,7 @@ export default {
                     await axios.get('https://meme-api.herokuapp.com/gimme')
                 ).data;
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setAuthor({
                         name: meme.author
                     })
@@ -35,10 +35,10 @@ export default {
                     .setURL(meme.postLink)
                     .setImage(meme.preview[meme.preview.length - 1]);
 
-                const row = new MessageActionRow().addComponents(
-                    new MessageButton()
+                const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+                    new ButtonBuilder()
                         .setLabel('Next Meme')
-                        .setStyle('SUCCESS')
+                        .setStyle(ButtonStyle.Success)
                         .setCustomId('next-meme')
                 );
 
@@ -71,20 +71,20 @@ export default {
 
                 await message.edit({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(title)
                             .setAuthor({
                                 name: message.embeds[0].author!.name,
                                 iconURL: message.embeds[0].author!.iconURL
                             })
-                            .setColor('RANDOM')
+                            .setColor('Random')
                             .setDescription(`Click the button one more time!`)
                     ],
                     components: message.components
                 });
             }
-        } else if (interaction.isSelectMenu()) {
-            const { values, member, guild, customId } = interaction;
+        } else if (interaction.isStringSelectMenu()) {
+            const { values, member, customId } = interaction;
 
             await interaction.deferReply({
                 ephemeral: true
@@ -148,7 +148,7 @@ export default {
 
                 if (customId === 'roles-age') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -163,12 +163,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(ageKeys[value as keyof typeof ageKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            ageKeys[value as keyof typeof ageKeys]
                         );
                     }
 
@@ -177,7 +173,7 @@ export default {
                     });
                 } else if (customId === 'roles-pronouns') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -196,12 +192,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(pronounKeys[value as keyof typeof pronounKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            pronounKeys[value as keyof typeof pronounKeys]
                         );
                     }
 
@@ -210,7 +202,7 @@ export default {
                     });
                 } else if (customId === 'roles-interests') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -229,12 +221,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(interestKeys[value as keyof typeof interestKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            interestKeys[value as keyof typeof interestKeys]
                         );
                     }
 
@@ -243,7 +231,7 @@ export default {
                     });
                 } else if (customId === 'roles-location') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -262,12 +250,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(locationKeys[value as keyof typeof locationKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            locationKeys[value as keyof typeof locationKeys]
                         );
                     }
 
@@ -276,7 +260,7 @@ export default {
                     });
                 } else if (customId === 'roles-color') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -293,12 +277,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(colorKeys[value as keyof typeof colorKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            colorKeys[value as keyof typeof colorKeys]
                         );
                     }
 
@@ -307,7 +287,7 @@ export default {
                     });
                 } else if (customId === 'roles-ping') {
                     const component =
-                        interaction.component as MessageSelectMenu;
+                        interaction.component as StringSelectMenuComponent;
                     const removed = component.options.filter(
                         (option) =>
                             !values.includes(
@@ -322,12 +302,8 @@ export default {
                     }
 
                     for (const value of values) {
-                        const role = await guild!.roles.fetch(pingKeys[value as keyof typeof pingKeys], {
-                            force: true
-                        })!;
-
                         await (member!.roles as GuildMemberRoleManager).add(
-                            role as Role
+                            pingKeys[value as keyof typeof pingKeys]
                         );
                     }
 

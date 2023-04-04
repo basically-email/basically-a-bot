@@ -1,34 +1,36 @@
-import {
-    MessageActionRow,
-    MessageButton,
-    MessageSelectMenu
-} from 'discord.js';
-import { TextCommand } from '../../classes';
+import { ActionRowBuilder, StringSelectMenuBuilder } from 'discord.js';
+import { Command } from '../../classes';
 
 export default {
     name: 'self-roles',
     description: 'Choose your roles!',
     category: 'MISC',
 
-    callback: async ({ message, channel, member }) => {
+    callback: async ({ interaction, channel, member }) => {
         if (
             ![
                 '532914066558156800',
                 '688308495384313866',
                 '892689836249591849',
+                '782110657142194176'
             ].includes(member.id)
         )
             return;
 
-        await message.delete();
+        interaction.reply({
+            content: `Sending the dropdowns in <#${channel.id}>.`,
+            ephemeral: true
+        });
 
-        await channel.send('https://media.discordapp.net/attachments/978964101193683014/982201479781822464/unknown.png');
+        await channel.send(
+            'https://media.discordapp.net/attachments/978964101193683014/982201479781822464/unknown.png'
+        );
 
         await channel.send({
             content: '**Age**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(1)
                         .setCustomId('roles-age')
                         .setPlaceholder('Nothing chosen.')
@@ -61,8 +63,8 @@ export default {
         await channel.send({
             content: '**Pronoun**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(1)
                         .setCustomId('roles-pronouns')
                         .setPlaceholder('Nothing chosen.')
@@ -91,12 +93,12 @@ export default {
                 )
             ]
         });
-        
+
         await channel.send({
             content: '**Interest**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(12)
                         .setCustomId('roles-interests')
                         .setPlaceholder('Nothing chosen.')
@@ -169,8 +171,8 @@ export default {
         await channel.send({
             content: '**Location**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(1)
                         .setCustomId('roles-location')
                         .setPlaceholder('Nothing chosen.')
@@ -207,8 +209,8 @@ export default {
         await channel.send({
             content: '**Color Roles**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(1)
                         .setCustomId('roles-color')
                         .setPlaceholder('Nothing chosen.')
@@ -235,7 +237,7 @@ export default {
                             },
                             {
                                 label: 'Cyan',
-                                value: 'roles-color-cyan',
+                                value: 'roles-color-cyan'
                             },
                             {
                                 label: 'Orange',
@@ -245,12 +247,12 @@ export default {
                 )
             ]
         });
-        
+
         await channel.send({
             content: '**Ping Roles**',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageSelectMenu()
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    new StringSelectMenuBuilder()
                         .setMaxValues(3)
                         .setCustomId('roles-ping')
                         .setPlaceholder('Nothing chosen.')
@@ -275,4 +277,4 @@ export default {
             ]
         });
     }
-} as TextCommand;
+} as Command;

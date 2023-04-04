@@ -1,3 +1,4 @@
+import { ActivityType } from 'discord.js';
 import { Event } from '../classes';
 
 export default {
@@ -12,7 +13,7 @@ export default {
 			activities: [
 				{
 					name: 'basically.email',
-					type: 'PLAYING'
+					type: ActivityType.Playing
 				}
 			]
 		});

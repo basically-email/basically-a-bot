@@ -1,25 +1,30 @@
-import { TextCommand } from '../../classes';
-import { MessageEmbed } from 'discord.js';
+import { Command } from '../../classes';
+import { EmbedBuilder } from 'discord.js';
 
 export default {
     name: 'snipe',
 
-    callback: async ({ channel, message, instance }) => {
-        let data = instance.snipe.get(message.channel.id);
+    category: 'MISC',
+    description: 'Snipe.',
+    defaultPermission: false,
+    permissions: ['ADMINISTRATOR'],
+
+    callback: async ({ channel, interaction, instance }) => {
+        let data = instance.snipe.get(channel.id);
         if (!data) return channel.send('there is nothing to snipe.');
-        const output = new MessageEmbed()
+        const output = new EmbedBuilder()
             .setAuthor({
                 name: data.author.tag,
                 iconURL: data.author.displayAvatarURL()
             })
             .setTitle(data.author.username)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(data.content)
             .setFooter({
                 text: `Created at: ${data.createdTimestamp.toString()}`
             });
-        channel.send({
+        await interaction.reply({
             embeds: [output]
         });
     }
-} as TextCommand;
+} as Command;

@@ -1,8 +1,14 @@
-import { TextCommand } from '../../classes';
-import { MessageActionRow, MessageButton } from 'discord.js';
+import { Command } from '../../classes';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 
 export default {
     name: 'socials',
+
+    category: 'MOD',
+    description: 'Sends a message with all the socials of basically.email',
+
+    defaultPermission: false,
+    permissions: ['ADMINISTRATOR'],
 
     callback: async ({ channel, member }) => {
         if (
@@ -18,31 +24,31 @@ export default {
             content:
                 'https://media.discordapp.net/attachments/978964101193683014/982201479781822464/unknown.png',
             components: [
-                new MessageActionRow().addComponents(
-                    new MessageButton()
-                        .setStyle('LINK')
+                new ActionRowBuilder<ButtonBuilder>().addComponents(
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
                         .setLabel('Website')
                         .setURL('https://www.basically.email/'),
-                    new MessageButton()
-                        .setStyle('LINK')
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
                         .setLabel('Twitter')
                         .setURL('https://basically.email/twitter'),
-                    new MessageButton()
-                        .setStyle('LINK')
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
                         .setLabel('GitHub')
                         .setURL('https://basically.email/github')
                 ),
-                new MessageActionRow().addComponents(
-                    new MessageButton()
-                        .setStyle('LINK')
+                new ActionRowBuilder<ButtonBuilder>().addComponents(
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
                         .setLabel('Instagram')
                         .setURL('https://basically.email/insta'),
-                    new MessageButton()
-                        .setStyle('LINK')
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
                         .setLabel('LinkedIn')
                         .setURL('https://basically.email/linkedin')
                 )
             ]
         });
     }
-} as TextCommand;
+} as Command;

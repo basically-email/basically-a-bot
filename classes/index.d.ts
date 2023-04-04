@@ -8,8 +8,8 @@ import {
     Message,
     TextBasedChannel,
     User,
-    CommandInteraction,
-    Collection
+    ChatInputCommandInteraction,
+    Collection,
 } from 'discord.js';
 
 import { PathLike } from 'fs';
@@ -20,7 +20,6 @@ export default class HandleBot {
     private database!: PathLike;
 
     slashCommands = new Collection<string, Command>();
-    textCommands = new Collection<string, TextCommand>();
 
     private separator!: string;
     prefix!: string;
@@ -32,7 +31,6 @@ export default class HandleBot {
 
     options: ConstructorOptions;
 
-    private textCommandTable: Table;
     private slashCommandTable: Table;
     private eventTable: Table;
 
@@ -40,10 +38,6 @@ export default class HandleBot {
 
     private get roleData(): any;
     private saveRoleData(data: any): void;
-
-    private handleDelete(): void;
-    private handleReactions(): void;
-    private handleReactionRemove(): void;
 
     private filter(
         directory: PathLike,
@@ -56,11 +50,6 @@ export default class HandleBot {
         testServer: string
     ): void;
     private handleSlashCommandInteractions(): void;
-
-    private handleTextCommands(
-        directory: PathLike,
-        type: 'ts' | 'js'
-    ): void;
 
     private handleFeatures(
         directory: PathLike,
@@ -125,51 +114,26 @@ export interface Event {
     callback(obj: EventCallbackObject, ...items: any): void;
 }
 
-export interface textCallbackObject {
-    message: Message;
-    args: string[];
-    prefix: string;
-    member: GuildMember;
-    client: Client;
-    user: User;
-    guild: Guild;
-    channel: TextBasedChannel;
-    instance: HandleBot;
-}
-
 export interface ConstructorOptions {
     handleCommands: boolean;
     handleEvents: boolean;
-    handleTextCommands: boolean;
     handleFeatures: boolean;
     test: boolean;
 
     client: Client;
     jsonFilePathForRoleInfo: PathLike;
     commandsDir: PathLike;
-    textCommandsDir: PathLike;
     featuresDir: PathLike;
     commandFileTypes: 'js' | 'ts';
     eventsDir: PathLike;
-
-    defaultPrefix: string;
-
-    reactionRoles: boolean;
 }
 
 export interface CallbackObject {
     user: User;
     member: GuildMember;
-    interaction: CommandInteraction;
+    interaction: ChatInputCommandInteraction;
     channel: TextBasedChannel;
     guild: Guild;
     client: Client;
     instance: HandleBot;
-}
-
-export interface TextCommand {
-    name: string;
-    aliases?: string[];
-    permissions?: PermissionString[];
-    callback(obj: textCallbackObject): void;
 }
